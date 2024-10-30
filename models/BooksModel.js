@@ -6,7 +6,8 @@ const BookSchema = new mongoose.Schema({
         required: true
     },
     author:{
-        type:String,
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Author",
         required: true
     },
     publishedYear: {
@@ -14,7 +15,8 @@ const BookSchema = new mongoose.Schema({
         required: true
     },
     genre:{
-        type:String,
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Genre",
         required: false
     },
 })

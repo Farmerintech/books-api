@@ -12,9 +12,21 @@ export const createBook = async (req, res)=>{
 
 //get all books
 export const getBooks = async (req, res) =>{
-    const books = await Book.find()
+   
     try {
-        res.status(201).json({data:books, message: "books get"}) 
+        const {author, publishedYear, title} = req.query
+        const filter = {}
+        if(author){
+            filter.author = author;
+        }
+        if(publishedYear){
+            filter.publishedYear = publishedYear;
+        }
+        if(title){
+            filter.title = title;
+        }
+        const books = await Book.find(filter)
+        res.status(201).json({data: books, message: "books get"}) 
     } catch (error) {
         res.status(500).json({message: error})                
     }
